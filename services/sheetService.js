@@ -22,10 +22,12 @@ export const appendToSheet = async (data) => {
 		[
 			new Date().toISOString(),
 			data.orderId,
+			data.price,
 			data.email,
 			data.number,
 			data.contentType,
 			data.canvasType,
+			data.description,
 			data.videoDuration,
 			data.language,
 			data.textToSpeech,

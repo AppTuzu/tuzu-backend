@@ -12,15 +12,18 @@ export const uploadController = async (req, res) => {
 		const metaData = req.body;
 		const files = req.files;
 
+
 		if (
 			!metaData.email ||
 			!metaData.number ||
+			!metaData.description ||
 			!metaData.contentType ||
-			files["files"].length === 0
+			!files["files"]
 		) {
-			return res
+			res
 				.status(400)
 				.json({ success: false, message: "Missing required fields." });
+			return;
 		}
 
 		const folderUrl = await uploadToDrive(orderId, files);
