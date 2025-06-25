@@ -1,4 +1,4 @@
-import fs from "fs";
+import fs from "fs/promises";
 import { google } from "googleapis";
 import { fileURLToPath } from "url";
 import path, { dirname } from 'path'
@@ -83,7 +83,7 @@ export const uploadToDrive = async (orderId, files) => {
 				name: uploaded.name,
 				id: uploaded.id,
 			});
-			await fs.unlink(file.path);
+			await fs.unlink(file.path, );
 		}
 	}
 
