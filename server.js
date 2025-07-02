@@ -15,7 +15,6 @@ app.use(
 );
 
 app.use(express.json());
-//! multer config and sheet and drive service env, backend url in reacty
 
 app.post(
 	"/api/form",

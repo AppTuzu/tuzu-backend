@@ -7,12 +7,12 @@ const __dirname = dirname(__filename);
 
 const keyFilePath = path.join(__dirname, "../service-account.json");
 
-// const credentials = JSON.parse(process.env.SERVICE_ACCOUNT_CREDENTIALS);
+const credentials = JSON.parse(process.env.SERVICE_ACCOUNT_CREDENTIALS);
 
 const auth = new google.auth.GoogleAuth({
 	// keyFile: keyFilePath,
-	keyFile: process.env.GOOGLE_SERVICE_ACCOUNT_AUTH,
-	// credentials,
+	// keyFile: process.env.GOOGLE_SERVICE_ACCOUNT_AUTH,
+	credentials,
 	scopes: ["https://www.googleapis.com/auth/spreadsheets"],
 });
 const sheets = google.sheets({ version: "v4", auth });
