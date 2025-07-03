@@ -9,7 +9,7 @@ const auth = new google.auth.GoogleAuth({
 const sheets = google.sheets({ version: "v4", auth });
 
 const sheetId = process.env.GOOGLE_DOWNLOAD_SHEET_ID;
-const range = "Sheet1!A2:C"; // A = orderID, B = VideoLink, C = Status
+const range = "Sheet1!A2:E"; // A = orderID, B = VideoLink, C = Status
 
 export const downloadController = async (req, res) => {
 	const orderId = "#" + req.query.orderId;
@@ -43,7 +43,7 @@ export const downloadController = async (req, res) => {
 
 export const updateSheetController = async (req, res) => {
 
-    const { orderId, desc } = req.body
+    const { orderId, instructions, description } = req.body;
 
 	try {
 		const response = await sheets.spreadsheets.values.get({
@@ -60,13 +60,13 @@ export const updateSheetController = async (req, res) => {
 
 		const rowNumber = rowIndex + 2; // account for header row
 
-		// Update columns C (Status) and D (Desc)
+		// Update columns C (Status), D (Instructions), and E (Description)
 		await sheets.spreadsheets.values.update({
 			spreadsheetId: sheetId,
-			range: `Sheet1!C${rowNumber}:D${rowNumber}`,
+			range: `Sheet1!C${rowNumber}:E${rowNumber}`,
 			valueInputOption: "RAW",
 			requestBody: {
-				values: [["in review", desc]],
+				values: [["in review", description, instructions]],
 			},
 		});
 
