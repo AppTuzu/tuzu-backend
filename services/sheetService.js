@@ -22,7 +22,7 @@ const SPREADSHEET_ID = process.env.GOOGLE_SHEET_ID;
 export const appendToSheet = async (data) => {
 	const values = [
 		[
-			new Date().toISOString(),
+			new Date().toLocaleString(),
 			data.orderId,
 			data.price,
 			data.razorpayOrderId,
@@ -41,6 +41,7 @@ export const appendToSheet = async (data) => {
 			data.relatedLinks || "",
 			data.textToSpeechScript || "",
 			data.customText || "",
+			data.textToSpeechCharacter,
 		],
 	];
 

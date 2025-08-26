@@ -12,7 +12,6 @@ export const uploadController = async (req, res) => {
 		const metaData = req.body;
 		const files = req.files;
 
-
 		if (
 			!metaData.email ||
 			!metaData.number ||
@@ -35,7 +34,7 @@ export const uploadController = async (req, res) => {
 			return;
 		}
 
-		await appendToSheet({ ...metaData, orderId, folderUrl })
+		await appendToSheet({ ...metaData, orderId, folderUrl });
 
 		res.status(200).json({
 			success: true,
@@ -43,7 +42,6 @@ export const uploadController = async (req, res) => {
 			orderId,
 			folderUrl,
 		});
-		
 	} catch (error) {
 		console.error(error);
 		res.status(500).json({ success: false, message: "Failed to upload files" });

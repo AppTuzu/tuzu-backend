@@ -32,8 +32,8 @@ export const verifyPaymentController = (req, res) => {
 		.digest("hex");
 
 	if (hmac === razorpay_signature) {
-		res.json({ status: "success" });
+		res.json({ status: "success", message: "Payment verification successful." });
 	} else {
-		res.status(400).json({ status: "failed" });
+		res.status(400).json({ status: "failed", message: "Payment verification failed." });
 	}
 };
